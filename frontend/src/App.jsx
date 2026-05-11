@@ -1,9 +1,31 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
 function App() {
   return (
-    <div>
-      <h1>Smart Campus AI</h1>
-      <p>AI Powered College Management System</p>
-    </div>
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route
+          path="/"
+          element={<Register />}
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 

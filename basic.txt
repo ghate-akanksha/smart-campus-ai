@@ -24,4 +24,5 @@ npm install express cors dotenv morgan bcryptjs jsonwebtoken
 
 npm install mongoose
 npm install -D nodemon
-
+npm install --save-dev nodemon
+npm install axios react-router-dom

@@ -1,4 +1,5 @@
- 
+ frontend folder 
+ cd ..
 cd frontend
 pwd : current location 
 npm create vite@latest .
@@ -6,3 +7,21 @@ fraemwork react and varient javascript
 install dependecies  npm install
 to run app 
 npm run dev
+
+backend folder 
+cd backend 
+npm init -y 
+npm install express cors dotenv morgan bcryptjs jsonwebtoken
+
+| Package      | Purpose                     |
+| ------------ | --------------------------- |
+| express      | backend framework           |
+| cors         | frontend-backend connection |
+| dotenv       | environment variables       |
+| morgan       | request logging             |
+| bcryptjs     | password hashing            |
+| jsonwebtoken | JWT authentication          |
+
+npm install mongoose
+npm install -D nodemon
+

@@ -1,0 +1,8 @@
+ 
+cd frontend
+pwd : current location 
+npm create vite@latest .
+fraemwork react and varient javascript
+install dependecies  npm install
+to run app 
+npm run dev

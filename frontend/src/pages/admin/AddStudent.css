@@ -1,0 +1,73 @@
+.add-student-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 25px;
+}
+
+
+
+/* Form Container */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 650px;
+  margin: auto;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  margin-bottom: 25px;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+
+
+/* Form */
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+
+/* Inputs */
+.form-container input {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-container input:focus {
+  border-color: #2563eb;
+}
+
+
+
+/* Button */
+.form-container button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.form-container button:hover {
+  background: #1d4ed8;
+}

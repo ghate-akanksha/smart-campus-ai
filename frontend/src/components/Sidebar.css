@@ -1,0 +1,62 @@
+.sidebar {
+  width: 250px;
+  background: #1e3a8a;
+  color: white;
+  padding: 25px;
+  min-height: 100vh;
+}
+
+
+
+/* Logo */
+.logo {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+  color: white;
+}
+
+
+
+/* Menu */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+/* Menu Item */
+.menu li {
+  margin-bottom: 15px;
+}
+
+
+
+/* Sidebar Link */
+.sidebar-link {
+  display: block;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+
+
+/* Hover */
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+
+
+/* Active */
+.active .sidebar-link {
+  background: white;
+  color: #1e3a8a;
+  font-weight: bold;
+}

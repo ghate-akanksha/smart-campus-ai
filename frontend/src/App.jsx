@@ -15,17 +15,24 @@ import Login from "./pages/Login";
 
 // Protected Route
 import ProtectedRoute from "./components/ProtectedRoute";
-import Students from "./pages/admin/Students";
 
 
 
-// Dashboards
+// Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import Students from "./pages/admin/Students";
+import AddStudent from "./pages/admin/AddStudent";
+import EditStudent from "./pages/admin/EditStudent";
 
+
+
+// Student Dashboard
 import StudentDashboard from "./pages/student/StudentDashboard";
 
+
+
+// Faculty Dashboard
 import FacultyDashboard from "./pages/faculty/FacultyDashboard";
-import AddStudent from "./pages/admin/AddStudent";
 
 
 
@@ -36,6 +43,7 @@ function App() {
     <BrowserRouter>
 
       <Routes>
+
 
 
         {/* Default Route */}
@@ -52,12 +60,16 @@ function App() {
           element={<Register />}
         />
 
+
+
         <Route
           path="/login"
           element={<Login />}
         />
 
 
+
+        {/* ================= ADMIN ROUTES ================= */}
 
         {/* Admin Dashboard */}
         <Route
@@ -73,7 +85,50 @@ function App() {
 
 
 
-        {/* Student Dashboard */}
+        {/* Students Page */}
+        <Route
+          path="/admin/students"
+          element={
+            <ProtectedRoute role="admin">
+
+              <Students />
+
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* Add Student */}
+        <Route
+          path="/admin/add-student"
+          element={
+            <ProtectedRoute role="admin">
+
+              <AddStudent />
+
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* Edit Student */}
+        <Route
+          path="/admin/edit-student/:id"
+          element={
+            <ProtectedRoute role="admin">
+
+              <EditStudent />
+
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* ================= STUDENT ROUTES ================= */}
+
         <Route
           path="/student"
           element={
@@ -87,7 +142,8 @@ function App() {
 
 
 
-        {/* Faculty Dashboard */}
+        {/* ================= FACULTY ROUTES ================= */}
+
         <Route
           path="/teacher"
           element={
@@ -98,37 +154,16 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
-  path="/admin/students"
-  element={
-    <ProtectedRoute role="admin">
-      <Students />
-    </ProtectedRoute>
-  }
-/>
 
-<Route
-  path="/admin/students"
-  element={
-    <ProtectedRoute role="admin">
-      <Students />
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/admin/add-student"
-  element={
-    <ProtectedRoute role="admin">
-      <AddStudent />
-    </ProtectedRoute>
-  }
-/>
 
-        {/* Invalid Route */}
+
+        {/* 404 Route */}
         <Route
           path="*"
           element={<h1>404 Page Not Found</h1>}
         />
+
+
 
       </Routes>
 

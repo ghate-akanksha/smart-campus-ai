@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Students.css";
 
@@ -15,6 +15,8 @@ const Students = () => {
   const [students, setStudents] = useState([]);
 
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
 
 
@@ -62,9 +64,7 @@ const Students = () => {
         "http://localhost:5000/api/students"
       );
 
-      setStudents(
-        response.data.students
-      );
+      setStudents(response.data.students);
 
     } catch (error) {
 
@@ -73,7 +73,6 @@ const Students = () => {
     } finally {
 
       setLoading(false);
-
     }
   };
 
@@ -84,6 +83,54 @@ const Students = () => {
     fetchStudents();
 
   }, []);
+
+
+
+
+  // Edit Student
+  const handleEdit = (id) => {
+
+    navigate(`/admin/edit-student/${id}`);
+  };
+
+
+
+
+  // Delete Student
+  const handleDelete = async (id) => {
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+
+      await axios.delete(
+        `http://localhost:5000/api/students/${id}`
+      );
+
+
+
+      // Remove Deleted Student From UI
+      setStudents((prevStudents) =>
+        prevStudents.filter(
+          (student) => student._id !== id
+        )
+      );
+
+
+
+      alert("Student Deleted Successfully");
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert("Failed to delete student");
+    }
+  };
 
 
 
@@ -192,13 +239,25 @@ const Students = () => {
 
                     <td>
 
-                      <button className="edit-btn">
+                      {/* Edit Button */}
+                      <button
+                        className="edit-btn"
+                        onClick={() =>
+                          handleEdit(student._id)
+                        }
+                      >
                         Edit
                       </button>
 
 
 
-                      <button className="delete-btn">
+                      {/* Delete Button */}
+                      <button
+                        className="delete-btn"
+                        onClick={() =>
+                          handleDelete(student._id)
+                        }
+                      >
                         Delete
                       </button>
 

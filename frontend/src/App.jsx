@@ -7,32 +7,69 @@ import {
 
 
 
-// Auth Pages
+// ========================================
+// AUTH PAGES
+// ========================================
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
 
 
-// Protected Route
-import ProtectedRoute from "./components/ProtectedRoute";
+// ========================================
+// NOTICE PAGE
+// ========================================
+import NoticePage
+from "./pages/NoticePage";
 
 
 
-// Admin Pages
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import Students from "./pages/admin/Students";
-import AddStudent from "./pages/admin/AddStudent";
-import EditStudent from "./pages/admin/EditStudent";
+// ========================================
+// PROTECTED ROUTE
+// ========================================
+import ProtectedRoute
+from "./components/ProtectedRoute";
 
 
 
-// Student Dashboard
-import StudentDashboard from "./pages/student/StudentDashboard";
+// ========================================
+// ADMIN PAGES
+// ========================================
+import AdminDashboard
+from "./pages/admin/AdminDashboard";
+
+import Students
+from "./pages/admin/Students";
+
+import AddStudent
+from "./pages/admin/AddStudent";
+
+import EditStudent
+from "./pages/admin/EditStudent";
+
+import AdminNoticeApproval
+from "./pages/admin/AdminNoticeApproval";
 
 
 
-// Faculty Dashboard
-import FacultyDashboard from "./pages/faculty/FacultyDashboard";
+// ========================================
+// STUDENT PAGES
+// ========================================
+import StudentDashboard
+from "./pages/student/StudentDashboard";
+
+
+
+// ========================================
+// FACULTY PAGES
+// ========================================
+import FacultyDashboard
+from "./pages/faculty/FacultyDashboard";
+
+import FacultyNotice
+from "./pages/faculty/FacultyNotice";
+
+import FacultyMyNotices
+from "./pages/faculty/FacultyMyNotices";
 
 
 
@@ -44,23 +81,26 @@ function App() {
 
       <Routes>
 
-
-
-        {/* Default Route */}
+        {/* ========================================
+            DEFAULT ROUTE
+        ======================================== */}
         <Route
           path="/"
-          element={<Navigate to="/login" />}
+          element={
+            <Navigate to="/login" />
+          }
         />
 
 
 
-        {/* Public Routes */}
+        {/* ========================================
+            PUBLIC ROUTES
+        ======================================== */}
+
         <Route
           path="/register"
           element={<Register />}
         />
-
-
 
         <Route
           path="/login"
@@ -69,101 +109,166 @@ function App() {
 
 
 
-        {/* ================= ADMIN ROUTES ================= */}
+        {/* ========================================
+            ADMIN ROUTES
+        ======================================== */}
 
-        {/* Admin Dashboard */}
         <Route
           path="/admin"
           element={
             <ProtectedRoute role="admin">
-
               <AdminDashboard />
-
             </ProtectedRoute>
           }
         />
 
 
 
-        {/* Students Page */}
         <Route
           path="/admin/students"
           element={
             <ProtectedRoute role="admin">
-
               <Students />
-
             </ProtectedRoute>
           }
         />
 
 
 
-        {/* Add Student */}
         <Route
           path="/admin/add-student"
           element={
             <ProtectedRoute role="admin">
-
               <AddStudent />
-
             </ProtectedRoute>
           }
         />
 
 
 
-        {/* Edit Student */}
         <Route
           path="/admin/edit-student/:id"
           element={
             <ProtectedRoute role="admin">
-
               <EditStudent />
-
             </ProtectedRoute>
           }
         />
 
 
 
-        {/* ================= STUDENT ROUTES ================= */}
+        <Route
+          path="/admin/notice-approval"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminNoticeApproval />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* ========================================
+            ADMIN NOTICE PAGE
+        ======================================== */}
+
+        <Route
+          path="/admin/notices"
+          element={
+            <ProtectedRoute role="admin">
+              <NoticePage />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* ========================================
+            STUDENT ROUTES
+        ======================================== */}
 
         <Route
           path="/student"
           element={
             <ProtectedRoute role="student">
-
               <StudentDashboard />
-
             </ProtectedRoute>
           }
         />
 
 
-
-        {/* ================= FACULTY ROUTES ================= */}
 
         <Route
-          path="/teacher"
+          path="/student/notices"
           element={
-            <ProtectedRoute role="teacher">
-
-              <FacultyDashboard />
-
+            <ProtectedRoute role="student">
+              <NoticePage />
             </ProtectedRoute>
           }
         />
 
 
 
-        {/* 404 Route */}
+        {/* ========================================
+            FACULTY ROUTES
+        ======================================== */}
+
+        <Route
+          path="/faculty"
+          element={
+            <ProtectedRoute role="faculty">
+              <FacultyDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        <Route
+          path="/faculty/create-notice"
+          element={
+            <ProtectedRoute role="faculty">
+              <FacultyNotice />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        <Route
+          path="/faculty/my-notices"
+          element={
+            <ProtectedRoute role="faculty">
+              <FacultyMyNotices />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        <Route
+          path="/faculty/notices"
+          element={
+            <ProtectedRoute role="faculty">
+              <NoticePage />
+            </ProtectedRoute>
+          }
+        />
+
+
+
+        {/* ========================================
+            404 PAGE
+        ======================================== */}
+
         <Route
           path="*"
-          element={<h1>404 Page Not Found</h1>}
+          element={
+            <h1>
+              404 Page Not Found
+            </h1>
+          }
         />
-
-
 
       </Routes>
 

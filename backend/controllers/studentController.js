@@ -167,7 +167,38 @@ const deleteStudent = async (req, res) => {
 
   }
 };
+// ============================
+// Get Logged In Student Profile
+// ============================
+const getMyProfile = async (req, res) => {
 
+  try {
+
+    const student = await Student.findOne({
+      email: req.user.email,
+    });
+
+    if (!student) {
+      return res.status(404).json({
+        success: false,
+        message: "Student Not Found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      student,
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
+};
 
 
 module.exports = {
@@ -176,4 +207,5 @@ module.exports = {
   getSingleStudent,
   updateStudent,
   deleteStudent,
+  getMyProfile,
 };

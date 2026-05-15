@@ -1,0 +1,129 @@
+/* =========================
+   Create Notice Container
+========================= */
+
+.createBox {
+  width: 100%;
+  max-width: 700px;
+  margin: 30px auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* =========================
+   Heading
+========================= */
+
+.createBox h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 28px;
+}
+
+
+
+/* =========================
+   Form
+========================= */
+
+.createBox form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+/* =========================
+   Input Field
+========================= */
+
+.createBox input {
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+
+
+/* =========================
+   Textarea
+========================= */
+
+.createBox textarea {
+  padding: 12px;
+  height: 140px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+
+
+/* =========================
+   Focus Effect
+========================= */
+
+.createBox input:focus,
+.createBox textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0px 0px 5px rgba(37, 99, 235, 0.4);
+}
+
+
+
+/* =========================
+   Button
+========================= */
+
+.createBox button {
+  padding: 12px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+
+/* =========================
+   Button Hover
+========================= */
+
+.createBox button:hover {
+  background-color: #1d4ed8;
+}
+
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 768px) {
+
+  .createBox {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .createBox h2 {
+    font-size: 24px;
+  }
+
+}

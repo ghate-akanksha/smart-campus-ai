@@ -1,0 +1,35 @@
+/* =========================
+   Main Notice Page
+========================= */
+
+.noticePage {
+  min-height: 100vh;
+  background-color: #f1f5f9;
+  padding: 40px 20px;
+}
+
+
+
+/* =========================
+   Inner Container
+========================= */
+
+.noticeContainer {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+
+
+/* =========================
+   Responsive Design
+========================= */
+
+@media (max-width: 768px) {
+
+  .noticePage {
+    padding: 20px 10px;
+  }
+
+}

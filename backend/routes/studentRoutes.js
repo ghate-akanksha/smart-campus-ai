@@ -8,9 +8,10 @@ const {
   getSingleStudent,
   updateStudent,
   deleteStudent,
+  getMyProfile,
 } = require("../controllers/studentController");
 
-
+const protect = require("../middleware/authMiddleware");
 
 // Create Student
 router.post("/", createStudent);
@@ -25,7 +26,12 @@ router.get("/", getAllStudents);
 // Get Single Student
 router.get("/:id", getSingleStudent);
 
-
+// Logged In Student Profile
+router.get(
+  "/my-profile",
+  protect,
+  getMyProfile
+);
 
 // Update Student
 router.put("/:id", updateStudent);

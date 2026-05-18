@@ -20,6 +20,7 @@ import Login from "./pages/Login";
 // ========================================
 import NoticePage
 from "./pages/NoticePage";
+import Attendance from "./pages/Attendance";
 
 
 
@@ -145,7 +146,10 @@ function App() {
         />
 
 
-
+<Route
+  path="/attendance"
+  element={<Attendance />}
+/>
         <Route
           path="/admin/edit-student/:id"
           element={
@@ -216,7 +220,7 @@ function App() {
         <Route
           path="/faculty"
           element={
-            <ProtectedRoute role="faculty">
+            <ProtectedRoute role="teacher">
               <FacultyDashboard />
             </ProtectedRoute>
           }
@@ -227,7 +231,7 @@ function App() {
         <Route
           path="/faculty/create-notice"
           element={
-            <ProtectedRoute role="faculty">
+            <ProtectedRoute role="teacher">
               <FacultyNotice />
             </ProtectedRoute>
           }
@@ -238,7 +242,7 @@ function App() {
         <Route
           path="/faculty/my-notices"
           element={
-            <ProtectedRoute role="faculty">
+            <ProtectedRoute role="teacher">
               <FacultyMyNotices />
             </ProtectedRoute>
           }
@@ -249,7 +253,7 @@ function App() {
         <Route
           path="/faculty/notices"
           element={
-            <ProtectedRoute role="faculty">
+            <ProtectedRoute role="teacher">
               <NoticePage />
             </ProtectedRoute>
           }

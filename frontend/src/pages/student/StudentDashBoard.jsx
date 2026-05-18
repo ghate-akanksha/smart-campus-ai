@@ -25,6 +25,9 @@ const StudentDashboard = () => {
   const [notices, setNotices] =
     useState([]);
 
+  const [attendance, setAttendance] =
+    useState([]);
+
   const [loading, setLoading] =
     useState(true);
 
@@ -49,8 +52,8 @@ const StudentDashboard = () => {
     },
 
     {
-      name: "Attendance",
-      path: "/student/attendance",
+      name: "My Attendance",
+      path: "/attendance",
     },
 
     {
@@ -108,9 +111,10 @@ const StudentDashboard = () => {
               }
             );
 
-          setStudent(
-            profileRes.data.student
-          );
+          const studentData =
+            profileRes.data.student;
+
+          setStudent(studentData);
 
 
 
@@ -124,6 +128,22 @@ const StudentDashboard = () => {
 
           setNotices(
             noticeRes.data.notices || []
+          );
+
+
+
+          // =====================
+          // Attendance
+          // =====================
+          const attendanceRes =
+            await axios.get(
+
+              `http://localhost:5000/api/attendance/student/${studentData.email}`
+
+            );
+
+          setAttendance(
+            attendanceRes.data.attendance || []
           );
 
         } catch (error) {
@@ -140,6 +160,31 @@ const StudentDashboard = () => {
     fetchDashboardData();
 
   }, [token]);
+
+
+
+
+  // =====================================
+  // Attendance Calculation
+  // =====================================
+  const totalClasses =
+    attendance.length;
+
+  const presentClasses =
+    attendance.filter(
+      (item) =>
+        item.status === "Present"
+    ).length;
+
+  const attendancePercentage =
+    totalClasses > 0
+
+      ? (
+          (presentClasses /
+          totalClasses) * 100
+        ).toFixed(2)
+
+      : 0;
 
 
 
@@ -210,17 +255,24 @@ const StudentDashboard = () => {
         <div className="cards">
 
           {/* Attendance */}
-          <div className="card">
+          <Link
+            to="/student-attendance"
+            className="card-link"
+          >
 
-            <h3>
-              Attendance
-            </h3>
+            <div className="card">
 
-            <p>
-              {student?.attendance || 0}%
-            </p>
+              <h3>
+                Attendance
+              </h3>
 
-          </div>
+              <p>
+                {attendancePercentage}%
+              </p>
+
+            </div>
+
+          </Link>
 
 
 
@@ -273,6 +325,66 @@ const StudentDashboard = () => {
             </div>
 
           </Link>
+
+        </div>
+
+
+
+
+        {/* =====================================
+            Attendance Summary
+        ===================================== */}
+        <div className="student-profile">
+
+          <h2>
+            Attendance Summary
+          </h2>
+
+
+
+          <div className="student-info">
+
+            <p>
+
+              <strong>
+                Total Classes:
+              </strong>
+
+              {" "}
+
+              {totalClasses}
+
+            </p>
+
+
+
+            <p>
+
+              <strong>
+                Present:
+              </strong>
+
+              {" "}
+
+              {presentClasses}
+
+            </p>
+
+
+
+            <p>
+
+              <strong>
+                Attendance Percentage:
+              </strong>
+
+              {" "}
+
+              {attendancePercentage}%
+
+            </p>
+
+          </div>
 
         </div>
 
@@ -430,8 +542,27 @@ const StudentDashboard = () => {
           }
 
         </div>
+<div className="dashboard-cards">
+<Link
+    to="/attendance"
+    className="card-link"
+  >
 
+    <div className="card">
 
+      <h3>
+        Attendance
+      </h3>
+
+      <p>
+        View Attendance
+      </p>
+
+    </div>
+
+  </Link>
+
+</div>
 
         {/* Footer */}
         <Footer />

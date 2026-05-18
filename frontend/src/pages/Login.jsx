@@ -78,7 +78,7 @@ const Login = () => {
 
       } else if (role === "teacher") {
 
-        navigate("/teacher");
+        navigate("/faculty");
 
       } else {
 

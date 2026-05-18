@@ -31,10 +31,16 @@ const AdminDashboard = () => {
     useState({
 
       students: 0,
+
       faculty: 0,
+
       departments: 12,
+
       notices: 0,
+
       pendingNotices: 0,
+
+      attendance: 0,
 
     });
 
@@ -161,6 +167,33 @@ const AdminDashboard = () => {
 
 
         // ===============================
+        // Attendance
+        // ===============================
+        let attendanceCount = 0;
+
+        try {
+
+          const attendanceRes =
+            await axios.get(
+              "http://localhost:5000/api/attendance"
+            );
+
+          attendanceCount =
+            attendanceRes.data.attendance
+              ? attendanceRes.data.attendance.length
+              : attendanceRes.data.length;
+
+        } catch (err) {
+
+          console.log(
+            "Attendance API Error"
+          );
+
+        }
+
+
+
+        // ===============================
         // Update Dashboard
         // ===============================
         setDashboardData({
@@ -175,6 +208,9 @@ const AdminDashboard = () => {
 
           pendingNotices:
             pendingCount,
+
+          attendance:
+            attendanceCount,
 
         });
 
@@ -225,6 +261,16 @@ const AdminDashboard = () => {
     },
 
     {
+      name: "Attendance",
+      path: "/attendance",
+    },
+
+    {
+      name: "Add Attendance",
+      path: "/add-attendance",
+    },
+
+    {
       name: "Manage Notices",
       path: "/admin/notices",
     },
@@ -270,7 +316,8 @@ const AdminDashboard = () => {
 
           <p>
             Manage students, faculty,
-            notices, and campus activities
+            attendance, notices,
+            and campus activities
             from one dashboard.
           </p>
 
@@ -326,6 +373,32 @@ const AdminDashboard = () => {
             </p>
 
           </div>
+
+
+
+          {/* Attendance */}
+          <Link
+            to="/attendance"
+            className="card-link"
+          >
+
+            <div className="card">
+
+              <h3>
+                Attendance Records
+              </h3>
+
+              <p>
+                {
+                  loading
+                    ? "..."
+                    : dashboardData.attendance
+                }
+              </p>
+
+            </div>
+
+          </Link>
 
 
 
@@ -395,6 +468,54 @@ const AdminDashboard = () => {
             </div>
 
           </Link>
+
+        </div>
+
+
+
+
+        {/* =====================================
+            Attendance Management
+        ===================================== */}
+        <div className="notice-management">
+
+          <h2>
+            Attendance Management
+          </h2>
+
+          <p>
+            Add, edit, delete,
+            and manage student
+            attendance records.
+          </p>
+
+
+
+          <div className="notice-buttons">
+
+            <Link to="/attendance">
+
+              <button className="notice-btn">
+
+                View Attendance
+
+              </button>
+
+            </Link>
+
+
+
+            <Link to="/add-attendance">
+
+              <button className="notice-btn">
+
+                Add Attendance
+
+              </button>
+
+            </Link>
+
+          </div>
 
         </div>
 

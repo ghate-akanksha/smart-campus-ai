@@ -8,8 +8,6 @@ const ProtectedRoute = ({ children, role }) => {
     localStorage.getItem("user")
   );
 
-
-
   // Not Logged In
   if (!token) {
     return <Navigate to="/login" />;

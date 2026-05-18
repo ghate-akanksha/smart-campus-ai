@@ -193,7 +193,7 @@ const FacultyDashboard = () => {
 
     {
       name: "Attendance",
-      path: "/faculty/attendance",
+      path: "/attendance",
     },
 
     {
@@ -317,7 +317,26 @@ const FacultyDashboard = () => {
 
           </div>
 
+{/* Attendance */}
+<Link
+  to="/attendance"
+  className="card-link"
+>
 
+  <div className="card">
+
+    <h3>
+      Attendance
+    </h3>
+
+    <p>
+      Mark and manage
+      student attendance
+    </p>
+
+  </div>
+
+</Link>
 
           {/* My Notices */}
           <Link

@@ -47,7 +47,7 @@ const NoticeCard = ({
 
     (
       user.role ===
-        "faculty"
+        "teacher"
 
       &&
 

@@ -1,120 +1,99 @@
 import "./CreateNotice.css";
-import { useState }
-from "react";
-
+import { useState } from "react";
 import axios from "axios";
 
 const CreateNotice = () => {
 
-  const [title, setTitle] =
-    useState("");
+  const [title, setTitle] = useState("");
+  const [message, setMessage] = useState("");
 
-  const [message, setMessage] =
-    useState("");
+  const user = JSON.parse(
+    localStorage.getItem("user")
+  );
 
+  const handleSubmit = async (e) => {
 
+    e.preventDefault();
 
-  const user =
-    JSON.parse(
-      localStorage.getItem("user")
-    );
+    try {
 
+      // Get token from localStorage
+      const token = localStorage.getItem("token");
 
+      await axios.post(
+        "http://localhost:5000/api/notices/create",
 
-  const handleSubmit =
-    async (e) => {
+        {
+          title,
+          message,
 
-      e.preventDefault();
+          postedBy:
+            user.fullName || user.name,
 
-      try {
+          role:
+            user.role,
+        },
 
-        await axios.post(
-          "http://localhost:5000/api/notices/create",
+        {
+          headers: {
+            Authorization:
+              `Bearer ${token}`,
+          },
+        }
+      );
 
-          {
-            title,
-            message,
-            postedBy:
-              user.fullName,
+      alert("Notice Created");
 
-            role:
-              user.role,
-          }
-        );
+      setTitle("");
+      setMessage("");
 
-        alert(
-          "Notice Created"
-        );
+      window.location.reload();
 
-        setTitle("");
+    } catch (error) {
 
-        setMessage("");
+      console.log(error);
 
-        window.location.reload();
+      alert(
+        error.response?.data?.message ||
+        "Failed to create notice"
+      );
+    }
+  };
 
-      } catch (error) {
-
-        console.log(error);
-
-      }
-    };
-
-
-
-  // Students cannot create
-  if (
-    user.role === "student"
-  ) {
+  // Students cannot create notices
+  if (user.role === "student") {
     return null;
   }
-
-
 
   return (
 
     <div className="createBox">
 
-      <h2>
-        Create Notice
-      </h2>
+      <h2>Create Notice</h2>
 
-      <form
-        onSubmit={
-          handleSubmit
-        }
-      >
+      <form onSubmit={handleSubmit}>
 
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) =>
-            setTitle(
-              e.target.value
-            )
+            setTitle(e.target.value)
           }
           required
         />
-
-
 
         <textarea
           placeholder="Message"
           value={message}
           onChange={(e) =>
-            setMessage(
-              e.target.value
-            )
+            setMessage(e.target.value)
           }
           required
         />
 
-
-
         <button type="submit">
-
           Create
-
         </button>
 
       </form>

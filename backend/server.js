@@ -14,29 +14,14 @@ dotenv.config();
 // ======================================
 // Database Connection
 // ======================================
-const connectDB =
-  require("./config/db");
+const connectDB = require("./config/db");
 
 connectDB();
 
 
 
 // ======================================
-// Routes
-// ======================================
-const authRoutes =
-  require("./routes/authRoutes");
-
-const studentRoutes =
-  require("./routes/studentRoutes");
-
-const noticeRoutes =
-  require("./routes/noticeRoutes");
-
-
-
-// ======================================
-// App Initialization
+// Initialize Express App
 // ======================================
 const app = express();
 
@@ -52,10 +37,27 @@ app.use(express.json());
 
 
 // ======================================
+// Routes Import
+// ======================================
+const authRoutes =
+require("./routes/authRoutes");
+
+const studentRoutes =
+require("./routes/studentRoutes");
+
+const noticeRoutes =
+require("./routes/noticeRoutes");
+
+const attendanceRoutes =
+require("./routes/attendanceRoutes");
+
+
+
+// ======================================
 // API Routes
 // ======================================
 
-// Auth Routes
+// Authentication
 app.use(
   "/api/auth",
   authRoutes
@@ -63,7 +65,7 @@ app.use(
 
 
 
-// Student Routes
+// Students
 app.use(
   "/api/students",
   studentRoutes
@@ -71,10 +73,18 @@ app.use(
 
 
 
-// Notice Routes
+// Notices
 app.use(
   "/api/notices",
   noticeRoutes
+);
+
+
+
+// Attendance
+app.use(
+  "/api/attendance",
+  attendanceRoutes
 );
 
 
@@ -84,7 +94,9 @@ app.use(
 // ======================================
 app.get("/", (req, res) => {
 
-  res.send("API Running");
+  res.send(
+    "Smart Campus AI Backend Running"
+  );
 
 });
 
@@ -94,7 +106,7 @@ app.get("/", (req, res) => {
 // Server
 // ======================================
 const PORT =
-  process.env.PORT || 5000;
+process.env.PORT || 5000;
 
 app.listen(PORT, () => {
 

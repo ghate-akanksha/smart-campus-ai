@@ -23,6 +23,7 @@ const noticeSchema =
         enum: [
           "admin",
           "faculty",
+          "teacher",
         ],
       },
     },
